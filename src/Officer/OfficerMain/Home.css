@@ -1,0 +1,106 @@
+.Select-City{
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    
+}
+.Select-District{
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    height: 200px;
+   padding: 0;
+
+}
+.Select-District li{
+    margin-bottom: 5px;
+    padding: 0px;
+
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.SideLevelBtnList{
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.SideLevelBtn{
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    width: 60%;
+    cursor: pointer;
+}
+.SideNav-button {
+        position: fixed;
+    bottom: 32px;
+    left: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(to right, #1f2937, #374151); 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 1040;
+}
+.HomeButtonMap {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    padding: 8px 16px;
+    background: linear-gradient(to right, #1f2937, #374151); 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    z-index: 1040;
+}
+.MapNavbar{
+    position: fixed;
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    background: linear-gradient(to right, #1f2937, #374151); 
+    color: white;
+
+        width: 50%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.ListMapNavbar{
+    display: flex;
+    justify-content: center;
+    gap: 0;
+
+    margin: 0 auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.ListMapNavbar li{
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.2s ease;
+    background-color: #1f2937;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 0;
+    padding: 6px 12px;
+    flex: 1;
+    text-align: center;
+}

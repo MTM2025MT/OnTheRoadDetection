@@ -1,0 +1,110 @@
+/* TheTaskList.css */
+
+.task-list-container {
+  display: grid;
+  padding: 40px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  /* Your 3-column layout */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+.task-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 700px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  
+  /* From your 'Section' style */
+  transition: 1s ease 0s;
+
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+}
+
+.task-title {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.task-location {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.priority-badge {
+  background-color: #e8d4c4;
+  color: #8b6f47;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.map-container {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 250px;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-section {
+  margin-bottom: 15px;
+}
+
+.status-badge {
+  background-color: #b3cce5;
+  color: #1a3a52;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #2e5090;
+  transition: width 0.3s ease;
+  /* Width is handled inline in React because it changes dynamically */
+}
+
+.status-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
