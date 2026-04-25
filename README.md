@@ -1,49 +1,50 @@
-# Pothole Detection Frontend (React + Vite)
+# 🛣️ OnTheRoadDetection - Web Dashboard
 
-## Quick Start (Install & Run)
+> A React-based municipal dashboard featuring interactive GIS mapping to visualize real-time pothole detections and manage repair team dispatch workflows.
 
-1) Install Node.js (LTS recommended).
-2) Install dependencies (recommended):
-	- `npm install`
-3) Start the dev server:
-	- `npm run dev`
+This repository contains the frontend client for the OnTheRoadDetection platform. Built with **React** and powered by **Vite**, it acts as the primary interface for municipal officers, consuming spatial data and AI hardware overlay metrics from the decoupled .NET backend.
 
-### If you want explicit npm install commands
+## 🛠️ Technology Stack
+* **Core Framework:** React, Vite
+* **Mapping & GIS:** Leaflet, React-Leaflet, Turf.js (Spatial Analysis)
+* **State & Routing:** React Router DOM
+* **Styling & UI:** TailwindCSS, React-Bootstrap, Recharts
+* **API Communication:** Axios (configured for HttpOnly cookies)
 
-Runtime dependencies:
+## ⚙️ Core System Mechanics & Architecture
 
-- `npm install @turf/turf axios bootstrap bootstrap-icons leaflet lucide-react react react-dom react-bootstrap react-leaflet react-leaflet-cluster react-router-dom recharts`
+The frontend is specifically engineered to handle complex spatial rendering and secure state management:
 
-Dev dependencies:
+* **Geospatial Rendering (GIS):** Integrates Leaflet and Turf.js to plot coordinate data and district boundaries. Utilizes `react-leaflet-cluster` to ensure smooth UI performance even when rendering thousands of municipal data points simultaneously.
+* **Secure Authentication Cycle:** Implements a robust JWT auth flow relying on **HttpOnly refresh cookies**. The application utilizes a custom Axios interceptor (`Api/PrivateAxios.jsx`) to seamlessly catch 401 errors, trigger the `GET /Account/Refresh-Token` endpoint, and retry failed requests without interrupting the user experience.
+* **Reactive State Management:** Manages complex dashboard states (toggling between "Reported," "Dispatched," and "Repaired"), updating map markers and data tables reactively without requiring full page reloads.
 
-- `npm install -D @eslint/js @tailwindcss/postcss @types/react @types/react-dom @vitejs/plugin-react autoprefixer eslint eslint-plugin-react-hooks eslint-plugin-react-refresh globals postcss tailwindcss vite`
+## 💻 Running Locally
 
-## Backend API (Where data comes from)
+### 1. Installation
+Ensure you have Node.js (LTS) installed, then clone the repository and install the dependencies:
+```bash
+git clone [https://github.com/MTM2025MT/OnTheRoadDetection.git](https://github.com/MTM2025MT/OnTheRoadDetection.git)
+cd OnTheRoadDetection
+npm install
+2. Configure the Backend API
+This frontend expects to communicate with the decoupled .NET backend.
 
-This frontend fetches data from a .NET API. By default it expects:
+By default, the API base URL is set to https://localhost:7099/.
 
-- API base URL: https://localhost:7099/
+If your backend is running on a different port or deployed to Azure, update the baseURL inside Api/PrivateAxios.jsx and src/Function.jsx.
 
-The API base URL is configured in:
+3. Start the Development Server
+Bash
+npm run dev
+🛠️ Additional Commands
+Build for production: npm run build
 
-- [Api/PrivateAxios.jsx](Api/PrivateAxios.jsx) (base URL for authenticated calls)
-- [src/Function.jsx](src/Function.jsx) (general data endpoints)
+Run ESLint: npm run lint
 
-If you run a different backend URL (e.g., Azure), update the `apilink` / `baseURL` values in those files.
+Note: The ASP.NET Core backend for this platform can be found here.
 
-## Login & Refresh Token
 
-Auth uses HttpOnly refresh cookies. Ensure your backend login endpoint sets the refresh cookie and supports:
+This perfectly captures your Vite setup, your security logic, and your spatial tools (like `turf.js`) while keeping that clean, scannable structure. 
 
-- `POST /Account/Login`
-- `GET /Account/Refresh-Token`
-
-If the refresh cookie is missing, the frontend will show 400 errors on refresh.
-
-## Build
-
-- `npm run build`
-
-## Lint
-
-- `npm run lint`
+With this done, your main internship portfolio projects are fully documented! Ar
