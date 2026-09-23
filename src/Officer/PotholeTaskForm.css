@@ -1,0 +1,485 @@
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+}
+
+/* Main Container */
+.PotholeTaskForm .PotholeTaskForm .modal-container {
+  width: 100%;
+  max-width: 56rem;
+  text-align: left;
+}
+
+/* Main Card */
+.PotholeTaskForm .card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  height: 90vh;
+    overflow: scroll;
+}
+
+/* Header */
+.PotholeTaskForm .card-header {
+  color: #fff;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ .header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.PotholeTaskForm .header-content {
+  display: flex;
+    text-align: left;
+    flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.PotholeTaskForm .header-icon-box {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.PotholeTaskForm .header-text h2 {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.PotholeTaskForm .header-text p {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.PotholeTaskForm .severity-badge {
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Content */
+.PotholeTaskForm .card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Pothole Details */
+.PotholeTaskForm .pothole-details {
+  text-align: left;
+  background-color: #f9fafb;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.PotholeTaskForm .pothole-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PotholeTaskForm .details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.PotholeTaskForm .detail-item p:first-child {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+}
+
+.PotholeTaskForm .detail-item p:last-child {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0;
+}
+
+.PotholeTaskForm .description-section {
+  margin-bottom: 12px;
+}
+
+.PotholeTaskForm .description-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+}
+
+.PotholeTaskForm .description-text {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.PotholeTaskForm .confidence-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PotholeTaskForm .confidence-bar-container {
+  width: 100px;
+  height: 8px;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.PotholeTaskForm .confidence-bar-fill {
+  height: 100%;
+  background-color: #22c55e;
+}
+
+.PotholeTaskForm  .confidence-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Divider */
+.PotholeTaskForm .divider {
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+/* Team Selection */
+.PotholeTaskForm .team-selection h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PotholeTaskForm .team-selection-desc {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.PotholeTaskForm .teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.PotholeTaskForm .team-card {
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background-color: #f9fafb;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.PotholeTaskForm .team-card:hover {
+  border-color: #bfdbfe;
+  background-color: #f0f9ff;
+}
+
+.PotholeTaskForm .team-card.selected {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.PotholeTaskForm  .team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.PotholeTaskForm .team-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.PotholeTaskForm .team-specialization {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.PotholeTaskForm .match-score {
+  text-align: right;
+}
+
+.PotholeTaskForm  .score-number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.PotholeTaskForm .score-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.PotholeTaskForm .team-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.PotholeTaskForm .team-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PotholeTaskForm .team-info-item-text p:first-child {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.PotholeTaskForm .team-info-item-text p:last-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.PotholeTaskForm .workload-badge {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.PotholeTaskForm .workload-low {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.PotholeTaskForm .workload-medium {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.PotholeTaskForm .workload-high {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.PotholeTaskForm .status-text {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.PotholeTaskForm .status-available {
+  color: #16a34a;
+}
+
+.PotholeTaskForm  .status-busy {
+  color: #dc2626;
+}
+
+.PotholeTaskForm  .team-additional-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.PotholeTaskForm .team-additional-info p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.PotholeTaskForm .team-additional-info span {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Task Details */
+.PotholeTaskForm  .task-details h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.PotholeTaskForm .task-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.PotholeTaskForm .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.PotholeTaskForm .form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.PotholeTaskForm .form-input,
+.PotholeTaskForm .form-textarea,
+.PotholeTaskForm .form-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.PotholeTaskForm .form-input:focus,
+.PotholeTaskForm .form-textarea:focus,
+.PotholeTaskForm .form-select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.PotholeTaskForm .form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.PotholeTaskForm .form-group-full {
+  margin-bottom: 16px;
+}
+
+/* Submit Section */
+.PotholeTaskForm .submit-section {
+  background-color: #f9fafb;
+  margin: -24px -24px -24px -24px;
+  padding: 16px 24px;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.PotholeTaskForm .submit-button {
+  flex: 1;
+  background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.PotholeTaskForm .submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+}
+
+.PotholeTaskForm .submit-button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Success Message */
+.PotholeTaskForm  .success-message {
+  background-color: #f0fdf4;
+  border-top: 1px solid #86efac;
+  padding: 16px 24px;
+}
+
+.PotholeTaskForm .success-text {
+  color: #166534;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Severity Gradients */
+.PotholeTaskForm .severity-1 {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.PotholeTaskForm  .severity-2 {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.PotholeTaskForm .severity-3 {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.PotholeTaskForm .severity-4 {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .PotholeTaskForm .details-grid,
+  .PotholeTaskForm .task-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .PotholeTaskForm .header-text p {
+    font-size: 24px;
+  }
+
+  .PotholeTaskForm .card-content {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .PotholeTaskForm .card-header {
+    padding: 16px;
+  }
+}

@@ -538,7 +538,143 @@ body {
   color: #1f2937;
   font-weight: 600;
 }
+/* ===== EXPANDED DETAILS PANEL ===== */
+.expanded-details {
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  border: 1px solid #d1d5db;
+  border-top: none;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  padding: 1.5rem;
+  animation: slideDown 0.3s ease-out;
+  max-height: 1200px;
+  overflow: hidden;
+}
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1200px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.expanded-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-section {
+  padding: 1rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.detail-section h4 {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.pothole-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  max-height: 300px;
+  border: 1px solid #e5e7eb;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  align-items: center;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row .detail-label {
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.detail-row .detail-value {
+  color: #1f2937;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Route Points */
+.route-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.route-point {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  align-items: center;
+}
+
+.point-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #26d0ce 0%, #1fb88f 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.point-coords {
+  font-size: 0.85rem;
+  color: #1f2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+@media (max-width: 768px) {
+  .detail-row {
+    grid-template-columns: 100px 1fr;
+  }
+}
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
   .content-grid {

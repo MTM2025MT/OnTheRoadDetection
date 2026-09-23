@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import './PotholePopup.css';
-function PotholePopup({ location = {
+function PotholePopup({setFormData, setPotholeTaskFormOpen, location = {
   id: "Main Street",
   latitude: 41.0082,
   longitude: 28.9784,
@@ -10,7 +10,7 @@ function PotholePopup({ location = {
   confidence: 0.94,
   timestamp: "Dec 9, 2025"
 } }) {
-  const navigate = useNavigate();
+
   const IsexistWithTask = false;
   // const [copied, setCopied] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -28,12 +28,20 @@ function PotholePopup({ location = {
    const CreateTask=()=>{
       if(IsexistWithTask==true){
       alert("This pothole already has an associated task.");
-      return;
+      return; 
       }
-      navigate('/pothole-task-form', { state: { ...location } });
 
 console.log('Create Task for location ID:', location.id);
-
+setFormData({
+  ...location,
+  potholeId: location.id,
+  latitude: location.latitude,
+  longitude: location.longitude,
+  levelOfSeverity: location.levelOfSeverity,
+  description: location.description,
+  confidence: location.confidence
+});
+setPotholeTaskFormOpen(true);
 }  
 
   const confidenceColor = location.confidence > 0.9 ? '#10b981' :

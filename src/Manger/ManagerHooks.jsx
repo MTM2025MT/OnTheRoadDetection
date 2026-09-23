@@ -34,7 +34,8 @@ export function useGetAllUsers() {
   const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axiosPrivate.get('Admin/GetAllUsers');
+      const response = await axiosPrivate.get('Admin/GetAllUser');
+      console.log('Fetched users:', response.data);
       setUsers(response.data);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -57,7 +58,8 @@ export function useAssignRole() {
 
   const assignRole = async (userId, rolename) => {
     try {
-      await axiosPrivate.post('Admin/AssignRole', {userId: userId, roleType: rolename });
+      const response = await axiosPrivate.post('Admin/AssignRole', {userId: userId, roleType: rolename });
+      console.log('Role assigned:', response.data);
     } catch (err) {
       console.error('Error assigning role:', err);
       throw err;
