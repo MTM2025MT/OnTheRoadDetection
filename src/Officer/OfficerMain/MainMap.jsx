@@ -20,6 +20,7 @@ import MapSidebar from './MapSidebar.jsx';
 
 import './Home.css'
 import { useNavigate } from 'react-router-dom';
+import PotholeTaskForm from '../PotholeTaskForm.jsx';
 export default function MainMap() {
 
   const {potholes,districts,getdistritcById} = useContext(PotholeContext);
@@ -28,6 +29,22 @@ export default function MainMap() {
   const [activeNeighborhood, setActiveNeighborhood] = useState(null);
   const [PointsOfTarget, setPointsOfTarget] = useState([]); 
    const [TaskMode, setTaskMode] = useState(false);
+   const [PotholeTaskFormopen, setPotholeTaskFormOpen] = useState(false);
+   const [formData, setFormData] = useState({
+    potholeId: null,
+    latitude: 41.0082,
+    longitude: 28.9784,
+    levelOfSeverity: 3,
+    description: 'Detected Issue #1',
+    confidence: 0.94,
+    selectedTeamId: null,
+    priority: 'urgent',
+    neighbourhoodId: null,
+    notes: '',
+    materials: '',
+    reportedAt: '',
+    budget: ''
+  });
  // Filter potholes based on current map bounds
   const Navigator=useNavigate();
 const visibleMarkers = useMemo(() => {
@@ -190,7 +207,15 @@ const visibleMarkers = useMemo(() => {
                                   confidence: location.confidence,
                                   timestamp: new Date(location.ReportedAt).toLocaleDateString(),
                                   levelOfSeverity:  location.levelOfSeverity
-                                }} />
+                                }}
+                                setFormData={setFormData}
+                                setPotholeTaskFormOpen={setPotholeTaskFormOpen} 
+                                
+                                
+                                
+                                  // Check if a task already exists for this 
+                                />
+                                
                                 </Popup>
                           </Marker> 
                           )
@@ -231,6 +256,7 @@ const visibleMarkers = useMemo(() => {
 
 
          <RoadInspectionTaskCreator TaskMode={TaskMode} setTaskMode={setTaskMode} mapPins={PointsOfTarget} setMapPins={setPointsOfTarget}/> 
+       {PotholeTaskFormopen && <PotholeTaskForm setIsOpen={setPotholeTaskFormOpen} formData={formData} setFormData={setFormData} isOpen={PotholeTaskFormopen} />}
     </div>
   )
 }

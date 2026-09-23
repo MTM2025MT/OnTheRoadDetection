@@ -1,7 +1,7 @@
 
 import axios from 'axios';
-  //const apilink='https://potholeapi20251220015420-fkaxfhgze2e6c0eh.germanywestcentral-01.azurewebsites.net/';
-const apilink='https://localhost:7099/';
+const apilink='https://potholeapi20251220015420-fkaxfhgze2e6c0eh.germanywestcentral-01.azurewebsites.net/';
+//const apilink='https://localhost:7099/';
  export function getByBounds(bounds) {
   const params = {
     first_latitude: bounds.getSouthWest().lat,

@@ -2,18 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { MapPin, AlertCircle, CheckCircle2, Clock, Zap, Plus, Eye, Send, Filter, Search, Trash2 } from 'lucide-react';
 import PrivateAxios from '../../../Api/PrivateAxios.jsx';
 import './OfficerMain.css'
-
+import { ChevronDown, Navigation2 } from 'lucide-react';
 export default function OfficerMain() {
   const [activeTab, setActiveTab] = useState('tasks');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [expandedItemId, setExpandedItemId] = useState(null);
+   const [expandedType, setExpandedType] = useState(null);
   // State for real data from backend
   const [backendTasks, setBackendTasks] = useState([]);
   const [backendPotholes, setBackendPotholes] = useState([]);
   const [backendScanTasks, setBackendScanTasks] = useState([]);
-
+   const handleExpandItem = (itemId, type) => {
+  if (expandedItemId === itemId && expandedType === type) {
+    setExpandedItemId(null);
+    setExpandedType(null);
+  } else {
+    setExpandedItemId(itemId);
+    setExpandedType(type);
+  }
+};
   // PRIMARY COLOR - TEAL/GREEN
   const primaryColor = '#1fb88f';
   const primaryLight = '#26d0ce';
@@ -169,7 +178,7 @@ export default function OfficerMain() {
   // Find unassigned potholes
   const unassignedPotholes = allPotholes.filter(pothole =>
     !allTasks.some(task => task.potholeId === pothole.id || task.pothole?.id === pothole.id)
-  );
+  ); 
 
   const displayUnassignedPotholes = unassignedPotholes.length > 0 ? unassignedPotholes : sampleUnassignedPotholes;
 
@@ -330,13 +339,81 @@ export default function OfficerMain() {
                           </div>
 
                           <div className="action-buttons">
-                            <button className="action-btn primary" style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}>
-                              <Eye size={14} /> View on Map
-                            </button>
+                              <button 
+                                className="action-btn primary" 
+                                onClick={() => handleExpandItem(task.id, 'task')}
+                                style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}
+                              >
+                                <Eye size={14} /> {expandedItemId === task.id && expandedType === 'task' ? 'Hide' : 'View'} Details
+                              </button>
                             <button className="action-btn secondary">
                               <Trash2 size={14} />
                             </button>
                           </div>
+                          {expandedItemId === task.id && expandedType === 'task' && (
+  <div className="expanded-details">
+    <div className="expanded-content">
+      <div className="detail-section">
+        <h4>Pothole Information</h4>
+        {pothole?.imageUrl && <img src={pothole.imageUrl} alt="Pothole" className="pothole-image" />}
+        <div className="detail-grid">
+          <div className="detail-row">
+            <span className="detail-label">Pothole ID</span>
+            <span className="detail-value">{pothole?.id}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Description</span>
+            <span className="detail-value">{pothole?.description}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Severity Level</span>
+            <span className="detail-value" style={{ color: colors.text }}>{getSeverityLabel(severity)}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Location</span>
+            <span className="detail-value">
+              <MapPin size={14} style={{ display: 'inline', marginRight: '0.25rem' }} />
+              {pothole?.latitude.toFixed(6)}, {pothole?.longitude.toFixed(6)}
+            </span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Neighbourhood</span>
+            <span className="detail-value">{pothole?.neighbourhood?.name || 'N/A'}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Detection Confidence</span>
+            <span className="detail-value">{pothole?.confidence}%</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Reported At</span>
+            <span className="detail-value">{new Date(pothole?.reportedAt).toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+      <div className="detail-section">
+        <h4>Task Assignment</h4>
+        <div className="detail-grid">
+          <div className="detail-row">
+            <span className="detail-label">Task ID</span>
+            <span className="detail-value">{task.id}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Officer</span>
+            <span className="detail-value">{task.officer?.name} (ID: {task.officer?.id})</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Team</span>
+            <span className="detail-value">{task.repairTeam?.name}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Assigned At</span>
+            <span className="detail-value">{new Date(task.assignedAt).toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
                         </div>
                       );
                     })
@@ -379,10 +456,57 @@ export default function OfficerMain() {
                             <button className="action-btn primary" style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}>
                               <Plus size={14} /> Create Task
                             </button>
-                            <button className="action-btn primary" style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}>
-                              <Eye size={14} />
-                            </button>
+<button 
+  className="action-btn primary"
+  onClick={() => handleExpandItem(pothole.id, 'pothole')}
+  style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}
+>
+  <Eye size={14} /> {expandedItemId === pothole.id && expandedType === 'pothole' ? 'Hide' : 'View'} Details
+</button>
                           </div>
+                          {expandedItemId === pothole.id && expandedType === 'pothole' && (
+  <div className="expanded-details">
+    <div className="expanded-content">
+      <div className="detail-section">
+        <h4>Pothole Details</h4>
+        {pothole.imageUrl && <img src={pothole.imageUrl} alt="Pothole" className="pothole-image" />}
+        <div className="detail-grid">
+          <div className="detail-row">
+            <span className="detail-label">Pothole ID</span>
+            <span className="detail-value">{pothole.id}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Description</span>
+            <span className="detail-value">{pothole.description}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Severity</span>
+            <span className="detail-value" style={{ color: colors.text }}>{getSeverityLabel(severity)}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Location</span>
+            <span className="detail-value">
+              <MapPin size={14} style={{ display: 'inline', marginRight: '0.25rem' }} />
+              {pothole.latitude.toFixed(6)}, {pothole.longitude.toFixed(6)}
+            </span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Neighbourhood</span>
+            <span className="detail-value">{pothole.neighbourhood?.name || 'N/A'}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Confidence</span>
+            <span className="detail-value">{pothole.confidence}%</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Reported At</span>
+            <span className="detail-value">{new Date(pothole.reportedAt).toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
                         </div>
                       );
                     })
@@ -442,13 +566,76 @@ export default function OfficerMain() {
                         </div>
 
                         <div className="action-buttons">
-                          <button className="action-btn primary" style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}>
-                            <Eye size={14} /> View 
-                          </button>
+<button 
+  className="action-btn primary"
+  onClick={() => handleExpandItem(scan.id, 'scan')}
+  style={{ backgroundColor: `${primaryColor}15`, color: primaryColor, border: `1px solid ${primaryColor}30` }}
+>
+  <Eye size={14} /> {expandedItemId === scan.id && expandedType === 'scan' ? 'Hide' : 'View'} Details
+</button>
                           <button className="action-btn secondary">
                             <Trash2 size={14} />
                           </button>
                         </div>
+                        {expandedItemId === scan.id && expandedType === 'scan' && (
+  <div className="expanded-details">
+    <div className="expanded-content">
+      <div className="detail-section">
+        <h4>Scan Configuration</h4>
+        <div className="detail-grid">
+          <div className="detail-row">
+            <span className="detail-label">Task ID</span>
+            <span className="detail-value">{scan.id}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Vehicle</span>
+            <span className="detail-value">{scan.vehicleId}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Type</span>
+            <span className="detail-value">{getScanTypeLabel(scan.type)}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Priority</span>
+            <span className="detail-value">{getPriorityLabel(scan.priority)}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Start Time</span>
+            <span className="detail-value">{new Date(scan.startTime).toLocaleString()}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Duration</span>
+            <span className="detail-value">{scan.estimatedMinutes} minutes</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Auto Rescan</span>
+            <span className="detail-value">{scan.autoRescan ? 'Enabled' : 'Disabled'}</span>
+          </div>
+          <div className="detail-row">
+            <span className="detail-label">Notifications</span>
+            <span className="detail-value">{scan.sendNotifications ? 'Enabled' : 'Disabled'}</span>
+          </div>
+        </div>
+      </div>
+      <div className="detail-section">
+        <h4>Route Points ({scan.routePoints?.length || 0})</h4>
+        <div className="route-points">
+          {(scan.routePoints || []).map((point) => (
+            <div key={point.id} className="route-point">
+              <div className="point-number">{point.order}</div>
+              <div className="point-info">
+                <p className="point-coords">
+                  <Navigation2 size={12} style={{ marginRight: '0.25rem' }} />
+                  {point.latitude.toFixed(6)}, {point.longitude.toFixed(6)}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
                       </div>
                     ))
                   )}

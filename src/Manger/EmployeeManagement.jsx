@@ -11,7 +11,9 @@ export default function EmployeeManagement() {
   const roles = Array.isArray(rolesData) ? rolesData : [];
 
   const employees = useMemo(() => {
+    refetchUsers(); // Ensure we have the latest users data
     if (!Array.isArray(usersData)) return [];
+    console.log('Raw users data:', usersData);
     return usersData.map(u => ({
       id: u.Id,
       name: `${u.FirstName ?? ''} ${u.LastName ?? ''}`.trim(),
@@ -82,7 +84,7 @@ export default function EmployeeManagement() {
   };
 
   // --- 6. Helper Functions & Filtering ---
-  const unassignedEmployees = employees.filter(e => !e.assignedRoleId);
+  const unassignedEmployees = employees.filter(e => !Array.isArray(e.roles) || e.roles.length === 0 || e.systemRole === 'General');
   const availableRoles = roles.filter(r => (r.userCount || 0) === 0);
 
   const filteredRoles = roles.filter(r =>
@@ -93,7 +95,7 @@ export default function EmployeeManagement() {
   const filteredEmployees = employees.filter(e =>
     (e.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
     (e.username || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (e.systemRole || '').toLowerCase().includes(searchTerm.toLowerCase())
+    (Array.isArray(e.roles) ? e.roles.join(', ').toLowerCase() : '').includes(searchTerm.toLowerCase())
   );
 
   const getRankClass = (rank) => {

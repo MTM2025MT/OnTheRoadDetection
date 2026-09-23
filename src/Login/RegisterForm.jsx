@@ -71,7 +71,7 @@ export default function RegisterForm() {
     firstName: '',
     lastName: '',
     userName: '',
-    email: '',
+    Email: '',
     password: '',
     confirmPassword: ''
   });
